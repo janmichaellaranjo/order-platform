@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package payment;
+
+option java_multiple_files = true;
+option java_package = "com.democompany.orderplatform.common.grpc.payment";
+
+service PaymentService {
+  rpc CapturePayment (CapturePaymentRequest) returns (CapturePaymentResponse);
+  rpc RefundPayment (RefundPaymentRequest) returns (RefundPaymentResponse);
+}
+
+message CapturePaymentRequest {
+  string order_id = 1;
+  string customer_id = 2;
+  int64 amount_cents = 3;
+  string currency = 4;
+}
+
+message CapturePaymentResponse {
+  string transaction_id = 2;
+}
+
+message RefundPaymentRequest {
+  string transaction_id = 2;
+}
+
+message RefundPaymentResponse {
+  bool success = 1;
+}
