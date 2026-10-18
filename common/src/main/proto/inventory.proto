@@ -21,7 +21,7 @@ message ReserveStockResponse {
 }
 
 message ReleaseStockRequest {
-  string reservation_id = 1;
+  string order_id = 1;
 }
 
 message ReleaseStockResponse {

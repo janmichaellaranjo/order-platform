@@ -20,10 +20,10 @@ class StockReservationService(
             request.productId))
     }
 
-    override fun releaseStock(reservationId: String) {
-        stockReservationRepository.findById(reservationId)
-            ?: throw StockReservationExceptions.ReservationNotFoundException(reservationId)
+    override fun releaseStock(orderId: String) {
+        val reservations = stockReservationRepository.findAllByOrderId(orderId)
+        if (reservations.isEmpty()) throw StockReservationExceptions.ReservationNotFoundException(orderId)
 
-        stockReservationRepository.delete(reservationId)
+        reservations.forEach { stockReservationRepository.delete(it.reservationId) }
     }
 }

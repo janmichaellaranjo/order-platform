@@ -29,7 +29,7 @@ class InventoryGrpcService(
     }
 
     override suspend fun releaseStock(request: ReleaseStockRequest): ReleaseStockResponse {
-        stockReservationService.releaseStock(request.reservationId)
+        stockReservationService.releaseStock(request.orderId)
 
         return ReleaseStockResponse.newBuilder()
             .setSuccess(true)

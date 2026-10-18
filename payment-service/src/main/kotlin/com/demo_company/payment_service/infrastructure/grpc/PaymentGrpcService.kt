@@ -27,7 +27,7 @@ class PaymentGrpcService(
     }
 
     override suspend fun refundPayment(request: RefundPaymentRequest): RefundPaymentResponse {
-        paymentService.refundPayment(request.transactionId)
+        paymentService.refundPayment(request.orderId)
         return RefundPaymentResponse.newBuilder()
             .setSuccess(true)
             .build()

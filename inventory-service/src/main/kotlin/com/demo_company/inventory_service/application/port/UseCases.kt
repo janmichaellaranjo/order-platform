@@ -10,6 +10,6 @@ interface UseCases {
     }
 
     interface ReleaseStockUseCase {
-        fun releaseStock(reservationId: String)
+        fun releaseStock(orderId: String)
     }
 }

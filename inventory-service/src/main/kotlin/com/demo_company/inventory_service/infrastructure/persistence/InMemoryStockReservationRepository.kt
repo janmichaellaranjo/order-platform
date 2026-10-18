@@ -19,6 +19,10 @@ class InMemoryStockReservationRepository(): StockReservationRepository {
         return stockReservations[reservationId]
     }
 
+    override fun findAllByOrderId(orderId: String): List<StockReservation> {
+        return stockReservations.values.filter { it.orderId == orderId }
+    }
+
     override fun delete(reservationId: String) {
         stockReservations.remove(reservationId)
     }

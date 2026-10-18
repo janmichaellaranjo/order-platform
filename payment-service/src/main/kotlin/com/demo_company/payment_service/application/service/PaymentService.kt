@@ -25,10 +25,10 @@ class PaymentService(
         return transaction
     }
 
-    override fun refundPayment(transactionId: String) {
-        transactionRepository.findById(transactionId)
-            ?: throw PaymentTransactionNotFoundExceptions.TransactionNotFoundException(transactionId)
+    override fun refundPayment(orderId: String) {
+        val transaction = transactionRepository.findByOrderId(orderId)
+            ?: throw PaymentTransactionNotFoundExceptions.TransactionNotFoundException(orderId)
 
-        transactionRepository.delete(transactionId)
+        transactionRepository.delete(transaction.transactionId)
     }
 }

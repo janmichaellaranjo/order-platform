@@ -11,6 +11,6 @@ interface UseCases {
     }
 
     interface RefundPaymentUseCase {
-        fun refundPayment(transactionId: String)
+        fun refundPayment(orderId: String)
     }
 }

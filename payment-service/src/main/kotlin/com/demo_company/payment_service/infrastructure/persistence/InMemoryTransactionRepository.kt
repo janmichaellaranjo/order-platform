@@ -20,6 +20,10 @@ class InMemoryTransactionRepository: TransactionRepository {
         return transactions[transactionId]
     }
 
+    override fun findByOrderId(orderId: String): PaymentTransaction? {
+        return transactions.values.firstOrNull { it.orderId == orderId }
+    }
+
     override fun delete(transactionId: String) {
         transactions.remove(transactionId)
     }
