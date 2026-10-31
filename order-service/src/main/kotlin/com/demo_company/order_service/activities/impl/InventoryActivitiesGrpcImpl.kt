@@ -1,14 +1,31 @@
 package com.demo_company.order_service.activities.impl
 
 import com.demo_company.order_service.activities.InventoryActivities
+import com.democompany.orderplatform.common.grpc.inventory.InventoryServiceGrpc
+import com.democompany.orderplatform.common.grpc.inventory.ReleaseStockRequest
+import com.democompany.orderplatform.common.grpc.inventory.ReserveStockRequest
 
-class InventoryActivitiesGrpcImpl : InventoryActivities {
+class InventoryActivitiesGrpcImpl(
+    private val inventoryServiceStub: InventoryServiceGrpc.InventoryServiceBlockingStub
+) : InventoryActivities {
 
     override fun reserveStock(orderId: String, productId: String, quantity: Int): String {
-        TODO("Not yet implemented")
+        val response = inventoryServiceStub.reserveStock(
+            ReserveStockRequest.newBuilder()
+                .setOrderId(orderId)
+                .setProductId(productId)
+                .setQuantity(quantity)
+                .build()
+        )
+        return response.reservationId
     }
 
-    override fun releaseStock(reservationId: String): Boolean {
-        TODO("Not yet implemented")
+    override fun releaseStock(orderId: String): Boolean {
+        val response = inventoryServiceStub.releaseStock(
+            ReleaseStockRequest.newBuilder()
+                .setOrderId(orderId)
+                .build()
+        )
+        return response.success
     }
 }

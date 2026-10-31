@@ -1,0 +1,11 @@
+package com.demo_company.customer_service
+
+import org.springframework.boot.autoconfigure.SpringBootApplication
+import org.springframework.boot.runApplication
+
+@SpringBootApplication
+class CustomerServiceApplication
+
+fun main(args: Array<String>) {
+    runApplication<CustomerServiceApplication>(*args)
+}

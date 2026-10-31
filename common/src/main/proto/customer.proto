@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package customer;
+
+option java_multiple_files = true;
+option java_package = "com.democompany.orderplatform.common.grpc.customer";
+
+service CustomerService {
+  rpc GetCustomer (GetCustomerRequest) returns (GetCustomerResponse);
+}
+
+message GetCustomerRequest {
+  string customer_id = 1;
+}
+
+message GetCustomerResponse {
+  string customer_id = 1;
+  string name = 2;
+  ShippingAddress shipping_address = 3;
+}
+
+message ShippingAddress {
+  string street = 1;
+  string city = 2;
+  string state = 3;
+  string zip = 4;
+  string country = 5;
+}
