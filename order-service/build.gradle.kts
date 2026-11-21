@@ -1,9 +1,14 @@
 plugins {
 	kotlin("jvm")
 	kotlin("plugin.spring")
+	id("grpc-service")
 	id("org.springframework.boot")
 	id("io.spring.dependency-management")
 	id("com.google.protobuf")
+}
+
+grpcService {
+    protoFiles = setOf("payment.proto", "inventory.proto", "fulfillment.proto", "customer.proto")
 }
 
 group = "com.democompany"

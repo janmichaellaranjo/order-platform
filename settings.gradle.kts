@@ -6,4 +6,4 @@ pluginManagement {
 }
 
 rootProject.name = "order-platform"
-include("common", "order-service", "inventory-service", "payment-service", "fulfillment-service")
+include("common", "order-service", "inventory-service", "payment-service", "fulfillment-service", "customer-service")
