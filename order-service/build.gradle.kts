@@ -18,6 +18,7 @@ dependencies {
     implementation("io.temporal:temporal-sdk:1.33.0")
 
     implementation("org.springframework.boot:spring-boot-starter")
+    implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.grpc:spring-grpc-spring-boot-starter")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
@@ -25,17 +26,10 @@ dependencies {
 }
 
 
-// Helper tasks to run the worker and the starter
+// Run the Spring Boot app — starts the Temporal worker and REST endpoint
 tasks.register<JavaExec>("runWorker") {
     group = "demogroup"
-    description = "Run the Temporal worker"
+    description = "Run the Temporal worker (via Spring Boot app)"
     classpath = sourceSets["main"].runtimeClasspath
-    mainClass = "com.demo_company.order_service.workflow.OrderWorkflow"
-}
-
-tasks.register<JavaExec>("runStarter") {
-    group = "demogroup"
-    description = "Run the workflow starter"
-    classpath = sourceSets["main"].runtimeClasspath
-    mainClass = "com.demo_company.order_service.Starter"
+    mainClass = "com.demo_company.order_service.OrderServiceApplicationKt"
 }
